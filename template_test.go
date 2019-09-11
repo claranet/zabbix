@@ -41,7 +41,7 @@ func TestTemplates(t *testing.T) {
 	}
 
 	template := CreateTemplate(hostGroup, t)
-	if template.TemplateId == "" {
+	if template.TemplateID == "" {
 		t.Errorf("Template id is empty %#v", template)
 	}
 

@@ -42,7 +42,7 @@ func TestTrigger(t *testing.T) {
 	item := CreateItem(app, t)
 	defer DeleteItem(item, t)
 
-	triggerParam := Params{"hostids": host.HostId}
+	triggerParam := Params{"hostids": host.HostID}
 	res, err := api.TriggersGet(triggerParam)
 	if err != nil {
 		t.Fatal(err)
