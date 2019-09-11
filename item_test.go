@@ -49,5 +49,12 @@ func TestItems(t *testing.T) {
 	}
 
 	item := CreateItem(app, t)
+
+	item.Name = "another name"
+	err = api.ItemsUpdate(Items{*item})
+	if err != nil {
+		t.Error(err)
+	}
+
 	DeleteItem(item, t)
 }

@@ -175,6 +175,13 @@ func (api *API) ItemsCreate(items Items) (err error) {
 	return
 }
 
+// ItemsUpdate Wrapper for item.update
+// https://www.zabbix.com/documentation/3.2/manual/api/reference/item/update
+func (api *API) ItemsUpdate(items Items) (err error) {
+	_, err = api.CallWithError("item.update", items)
+	return
+}
+
 // ItemsDelete Wrapper for item.delete
 // Cleans ItemId in all items elements if call succeed.
 // https://www.zabbix.com/documentation/3.2/manual/api/reference/item/delete

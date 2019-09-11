@@ -91,6 +91,13 @@ func (api *API) TriggersCreate(triggers Triggers) (err error) {
 	return
 }
 
+// TriggersUpdate Wrapper for trigger.update
+// https://www.zabbix.com/documentation/3.2/manual/api/reference/trigger/update
+func (api *API) TriggersUpdate(triggers Triggers) (err error) {
+	_, err = api.CallWithError("trigger.update", triggers)
+	return
+}
+
 // TriggersDelete Wrapper for trigger.delete
 // Cleans ItemId in all triggers elements if call succeed.
 // https://www.zabbix.com/documentation/3.2/manual/api/reference/trigger/delete

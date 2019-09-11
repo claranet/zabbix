@@ -56,6 +56,13 @@ func (api *API) TemplatesCreate(templates Templates) (err error) {
 	return
 }
 
+// TemplatesUpdate Wrapper for template.update
+// https://www.zabbix.com/documentation/3.2/manual/api/reference/template/update
+func (api *API) TemplatesUpdate(templates Templates) (err error) {
+	_, err = api.CallWithError("template.update", templates)
+	return
+}
+
 // TemplatesDelete Wrapper for template.delete
 // Cleans ApplicationID in all apps elements if call succeed.
 // https://www.zabbix.com/documentation/3.2/manual/api/reference/template/delete
