@@ -46,13 +46,10 @@ before_install:
     EOF
   - ansible-playbook -c local -i "${TEST_ZABBIX_HOST}," deploy.yml
   - bash -x tests.sh
-  - go env
-  - pwd
-  - go get -v github.com/AlekSi/reflector
-
-script: 
   - cd ~
   - git clone https://github.com/claranet/go-zabbix-api.git
   - cd go-zabbix-api
+
+script: 
   - go test -v
   
