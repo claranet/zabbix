@@ -3,13 +3,13 @@ package zabbix_test
 import (
 	"testing"
 
-	. "."
+	dd "github.com/claranet/go-zabbix-api"
 )
 
-func CreateTemplate(hostGroup *HostGroup, t *testing.T) *Template {
-	template := Templates{Template{
+func CreateTemplate(hostGroup *dd.HostGroup, t *testing.T) *dd.Template {
+	template := dd.Templates{dd.Template{
 		Host:   "template name",
-		Groups: HostGroups{*hostGroup},
+		Groups: dd.HostGroups{*hostGroup},
 	}}
 	err := getAPI(t).TemplatesCreate(template)
 	if err != nil {
@@ -18,8 +18,8 @@ func CreateTemplate(hostGroup *HostGroup, t *testing.T) *Template {
 	return &template[0]
 }
 
-func DeleteTemplate(template *Template, t *testing.T) {
-	err := getAPI(t).TemplatesDelete(Templates{*template})
+func DeleteTemplate(template *dd.Template, t *testing.T) {
+	err := getAPI(t).TemplatesDelete(dd.Templates{*template})
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -31,7 +31,7 @@ func TestTemplates(t *testing.T) {
 	hostGroup := CreateHostGroup(t)
 	defer DeleteHostGroup(hostGroup, t)
 
-	templates, err := api.TemplatesGet(Params{})
+	templates, err := api.TemplatesGet(dd.Params{})
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -46,7 +46,7 @@ func TestTemplates(t *testing.T) {
 	}
 
 	template.Name = "new template name"
-	err = api.TemplatesUpdate(Templates{*template})
+	err = api.TemplatesUpdate(dd.Templates{*template})
 	if err != nil {
 		t.Error(err)
 	}
