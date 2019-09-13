@@ -17,8 +17,6 @@ env:
   matrix:
     - TEST_ZABBIX_VERSION=3.2
 
-go_import_path: github.com/AlekSi/reflector
-
 before_install:
   - sudo hostname $TEST_ZABBIX_HOST && echo "127.0.1.1    $TEST_ZABBIX_HOST" | sudo tee -a /etc/hosts
   - sudo apt update -q
@@ -48,5 +46,6 @@ before_install:
     EOF
   - ansible-playbook -c local -i "${TEST_ZABBIX_HOST}," deploy.yml
   - bash -x tests.sh
-  - cd ~
-  - go list ./...
+  - go env
+  - go get -v github.com/AlekSi/reflector
+  
