@@ -50,5 +50,9 @@ before_install:
   - pwd
   - go get -v github.com/AlekSi/reflector
 
-script: go test -v
+script: 
+  - cd ~
+  - git clone https://github.com/claranet/go-zabbix-api.git claranet/go-zabbix-api
+  - cd go-zabbix-api
+  - go test -v
   
