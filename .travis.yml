@@ -50,5 +50,5 @@ before_install:
   - pwd
   - go get -v github.com/AlekSi/reflector
 
-  script: go test -v
+script: go test -v
   
