@@ -46,4 +46,5 @@ before_install:
     EOF
   - ansible-playbook -c local -i "${TEST_ZABBIX_HOST}," deploy.yml
   - bash -x tests.sh
-  - go install github.com/claranet/go-zabbix-api
+  - ls
+  - ls -lR /home/travis/.gimme/versions/go1.6.2.linux.amd64/
