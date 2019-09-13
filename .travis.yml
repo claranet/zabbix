@@ -49,6 +49,6 @@ before_install:
   - go env
   - pwd
   - go get -v github.com/AlekSi/reflector
-  - ls -lR
+  - go get -v github.com/claranet/go-zabbix-api
   - go build -v
   
