@@ -47,5 +47,8 @@ before_install:
   - ansible-playbook -c local -i "${TEST_ZABBIX_HOST}," deploy.yml
   - bash -x tests.sh
   - go env
+  - pwd
   - go get -v github.com/AlekSi/reflector
+  - ls -lR
+  - go build -v
   
