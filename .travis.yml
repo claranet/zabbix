@@ -48,4 +48,5 @@ before_install:
     EOF
   - ansible-playbook -c local -i "${TEST_ZABBIX_HOST}," deploy.yml
   - bash -x tests.sh
-  - go build
+  - cd ~
+  - go list ./...
