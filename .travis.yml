@@ -52,7 +52,7 @@ before_install:
 
 script: 
   - cd ~
-  - git clone https://github.com/claranet/go-zabbix-api.git claranet/go-zabbix-api
+  - git clone https://github.com/claranet/go-zabbix-api.git
   - cd go-zabbix-api
   - go test -v
   
