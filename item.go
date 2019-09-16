@@ -154,6 +154,21 @@ func (api *API) ItemsGet(params Params) (res Items, err error) {
 	return
 }
 
+// ItemGetByID Gets item by Id only if there is exactly 1 matching host.
+func (api *API) ItemGetByID(id string) (res *Item, err error) {
+	items, err := api.ItemsGet(Params{"itemids": id})
+	if err != nil {
+		return
+	}
+
+	if len(items) != 1 {
+		e := ExpectedOneResult(len(items))
+		err = &e
+	}
+	res = &items[0]
+	return
+}
+
 // ItemsGetByApplicationID Gets items by application Id.
 func (api *API) ItemsGetByApplicationID(id string) (res Items, err error) {
 	return api.ItemsGet(Params{"applicationids": id})

@@ -50,6 +50,11 @@ func TestItems(t *testing.T) {
 
 	item := CreateItem(app, t)
 
+	_, err = api.ItemGetByID(item.ItemID)
+	if err != nil {
+		t.Fatal(err)
+	}
+
 	item.Name = "another name"
 	err = api.ItemsUpdate(dd.Items{*item})
 	if err != nil {
