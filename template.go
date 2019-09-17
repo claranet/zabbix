@@ -40,6 +40,22 @@ func (api *API) TemplatesGet(params Params) (res Templates, err error) {
 	return
 }
 
+// TemplateGetByID Gets template by Id only if there is exactly 1 matching template.
+func (api *API) TemplateGetByID(id string) (template *Template, err error) {
+	templates, err := api.TemplatesGet(Params{"templateids": id})
+	if err != nil {
+		return
+	}
+
+	if len(templates) == 1 {
+		template = &templates[0]
+	} else {
+		e := ExpectedOneResult(len(templates))
+		err = &e
+	}
+	return
+}
+
 // TemplatesCreate Wrapper for template.create
 // https://www.zabbix.com/documentation/3.2/manual/api/reference/template/create
 func (api *API) TemplatesCreate(templates Templates) (err error) {

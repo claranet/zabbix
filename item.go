@@ -164,6 +164,7 @@ func (api *API) ItemGetByID(id string) (res *Item, err error) {
 	if len(items) != 1 {
 		e := ExpectedOneResult(len(items))
 		err = &e
+		return
 	}
 	res = &items[0]
 	return
