@@ -45,6 +45,11 @@ func TestTemplates(t *testing.T) {
 		t.Errorf("Template id is empty %#v", template)
 	}
 
+	_, err = api.TemplateGetByID(template.TemplateID)
+	if err != nil {
+		t.Error(err)
+	}
+
 	template.Name = "new template name"
 	err = api.TemplatesUpdate(dd.Templates{*template})
 	if err != nil {
