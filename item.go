@@ -121,6 +121,8 @@ type Item struct {
 
 	// Fields below used only when creating applications
 	ApplicationIds []string `json:"applications,omitempty"`
+
+	ItemParent Hosts `json:"hosts"`
 }
 
 // Items is an array of Item
@@ -151,6 +153,13 @@ func (api *API) ItemsGet(params Params) (res Items, err error) {
 	}
 
 	reflector.MapsToStructs2(response.Result.([]interface{}), &res, reflector.Strconv, "json")
+	parseArray := response.Result.([]interface{})
+	for i := range parseArray {
+		parseResult := parseArray[i].(map[string]interface{})
+		if _, present := parseResult["hosts"]; present {
+			reflector.MapsToStructs2(parseResult["hosts"].([]interface{}), &(res[i].ItemParent), reflector.Strconv, "json")
+		}
+	}
 	return
 }
 
