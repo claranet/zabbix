@@ -70,6 +70,8 @@ type Trigger struct {
 	Functions    TriggerFunctions `json:"functions,omitempty"`
 	// Items contained by the trigger in the items property.
 	ContainedItems Items `json:"items,omitempty"`
+	// Hosts that the trigger belongs to in the hosts property.
+	TriggerParent Hosts `json:"hosts,omitempty"`
 }
 
 // Triggers is an array of Trigger
@@ -98,6 +100,9 @@ func (api *API) TriggersGet(params Params) (res Triggers, err error) {
 		}
 		if _, present := parseResult["items"]; present {
 			reflector.MapsToStructs2(parseResult["items"].([]interface{}), &(res[i].ContainedItems), reflector.Strconv, "json")
+		}
+		if _, present := parseResult["hosts"]; present {
+			reflector.MapsToStructs2(parseResult["hosts"].([]interface{}), &(res[i].TriggerParent), reflector.Strconv, "json")
 		}
 	}
 	return
@@ -178,6 +183,27 @@ func (api *API) TriggersDeleteByIds(ids []string) (err error) {
 	}
 	if len(ids) != l {
 		err = &ExpectedMore{len(ids), l}
+	}
+	return
+}
+
+// TriggersDeleteNoError Wrapper for trigger.delete
+// return the id of the deleted trigger
+func (api *API) TriggersDeleteNoError(ids []string) (triggerids []interface{}, err error) {
+	response, err := api.CallWithError("trigger.delete", ids)
+	if err != nil {
+		return
+	}
+
+	result := response.Result.(map[string]interface{})
+	triggerids1, ok := result["triggerids"].([]interface{})
+	if !ok {
+		triggerids2 := result["triggerids"].(map[string]interface{})
+		for _, id := range triggerids2 {
+			triggerids = append(triggerids, id)
+		}
+	} else {
+		triggerids = triggerids1
 	}
 	return
 }
