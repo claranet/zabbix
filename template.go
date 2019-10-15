@@ -12,8 +12,9 @@ type Template struct {
 	Description     string     `json:"description,omitempty"`
 	Name            string     `json:"name,omitempty"`
 	Groups          HostGroups `json:"groups"`
-	UserMacros      Macros     `json:"macros,omitempty"`
+	UserMacros      Macros     `json:"macros"`
 	LinkedTemplates Templates  `json:"templates,omitempty"`
+	TemplatesClear  Templates  `json:"templates_clear,omitempty"`
 	LinkedHosts     []string   `json:"hosts,omitempty"`
 }
 
