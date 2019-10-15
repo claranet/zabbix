@@ -246,3 +246,24 @@ func (api *API) ItemsDeleteByIds(ids []string) (err error) {
 	}
 	return
 }
+
+// ItemsDeleteNoError Wrapper for item.delete
+// Delete the item and return the id of the deleted item
+func (api *API) ItemsDeleteNoError(ids []string) (itemids []interface{}, err error) {
+	response, err := api.CallWithError("item.delete", ids)
+	if err != nil {
+		return
+	}
+
+	result := response.Result.(map[string]interface{})
+	itemids1, ok := result["itemids"].([]interface{})
+	if !ok {
+		itemids2 := result["itemids"].(map[string]interface{})
+		for _, id := range itemids2 {
+			itemids = append(itemids, id)
+		}
+	} else {
+		itemids = itemids1
+	}
+	return
+}
