@@ -6,7 +6,7 @@ import (
 	"reflect"
 	"testing"
 
-	zapi "github.com/claranet/go-zabbix-api"
+	zapi "github.com/extrading/go-zabbix-api"
 )
 
 func testCreateApplication(host *zapi.Host, t *testing.T) *zapi.Application {
