@@ -15,7 +15,7 @@ jobs:
       TEST_ZABBIX_USER: Admin
       TEST_ZABBIX_PASSWORD: zabbix
       TEST_ZABBIX_HOST: localhost
-      TEST_ZABBIX_URL: http://${{env.TEST_ZABBIX_HOST}}/api_jsonrpc.php
+      TEST_ZABBIX_URL: http://$TEST_ZABBIX_HOST/api_jsonrpc.php
       TEST_ZABBIX_VERSION: 6.0.2
     runs-on: ubuntu-latest
     steps:
@@ -59,7 +59,7 @@ jobs:
                 - zabbix_url: $TEST_ZABBIX_HOST
                 - zabbix_version: $TEST_ZABBIX_VERSION
             EOF
-          ansible-playbook -c local -i "${{env.TEST_ZABBIX_HOST}}," deploy.yml
+          ansible-playbook -c local -i "$TEST_ZABBIX_HOST," deploy.yml
           go install github.com/extrading/go-zabbix-api
 
       - name: Run tests
