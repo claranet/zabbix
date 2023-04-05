@@ -57,8 +57,8 @@ type Trigger struct {
 	Description string `json:"description"`
 	Expression  string `json:"expression"`
 	Comments    string `json:"comments"`
-	//TemplateId  string    `json:"templateid"`
-	//Value ValueType `json:""`
+	// TemplateId  string    `json:"templateid"`
+	// Value ValueType `json:""`
 
 	Priority     SeverityType     `json:"priority,string"`
 	Status       StatusType       `json:"status,string"`

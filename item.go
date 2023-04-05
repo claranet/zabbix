@@ -44,7 +44,7 @@ const (
 	ExternalCheck ItemType = 10
 	// DatabaseMonitor type
 	DatabaseMonitor ItemType = 11
-	//IPMIAgent type
+	// IPMIAgent type
 	IPMIAgent ItemType = 12
 	// SSHAgent type
 	SSHAgent ItemType = 13
@@ -58,7 +58,7 @@ const (
 	SNMPTrap ItemType = 17
 	// DependentItem type (new in 3.4)
 	DependentItem ItemType = 18
-	//HTTPAgent type (new in 4.0)
+	// HTTPAgent type (new in 4.0)
 	HTTPAgent ItemType = 19
 )
 

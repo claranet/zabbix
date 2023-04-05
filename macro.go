@@ -4,7 +4,7 @@ package zabbix
 // https://www.zabbix.com/documentation/3.2/manual/api/reference/usermacro/object
 type Macro struct {
 	MacroID   string `json:"hostmacroids,omitempty"`
-	HostID    string `json:"hostid"`
+	HostID    string `json:"hostid,omitemptry"`
 	MacroName string `json:"macro"`
 	Value     string `json:"value"`
 }
@@ -63,7 +63,7 @@ func (api *API) MacrosUpdate(macros Macros) (err error) {
 
 // MacrosDeleteByIDs Wrapper for usermacro.delete
 // Cleans MacroId in all macro elements if call succeed.
-//https://www.zabbix.com/documentation/3.2/manual/api/reference/usermacro/delete
+// https://www.zabbix.com/documentation/3.2/manual/api/reference/usermacro/delete
 func (api *API) MacrosDeleteByIDs(ids []string) (err error) {
 	response, err := api.CallWithError("usermacro.delete", ids)
 
