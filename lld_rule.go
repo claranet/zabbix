@@ -34,7 +34,7 @@ type LLDRule struct {
 	AuthType             string        `json:"authtype,omitempty"`
 	DelayFlex            string        `json:"delay_flex,omitempty"`
 	Description          string        `json:"description,omitempty"`
-	Error                string        `json:"error,omitempty"` //Readonly
+	Error                string        `json:"error,omitempty"` // Readonly
 	IpmiSensor           string        `json:"ipmi_sensor,omitempty"`
 	LifeTime             string        `json:"lifetime,omitempty"`
 	Params               string        `json:"params,omitempty"`
