@@ -8,6 +8,10 @@ type (
 	// StatusType Status and function of the host.
 	// see "status" in:	https://www.zabbix.com/documentation/3.2/manual/api/reference/host/object
 	StatusType int
+
+	// Tls connection type, used for ingress or outgress traffic
+	// https://www.zabbix.com/documentation/current/en/manual/api/reference/host/object#host
+	TlsConnectionType int
 )
 
 const (
@@ -26,15 +30,30 @@ const (
 	Unmonitored StatusType = 1
 )
 
+const (
+	// None Tls connection (default)
+	None TlsConnectionType = 1
+	// Use PSK encryption
+	Psk TlsConnectionType = 2
+	// Use x509 encryption
+	Certificate TlsConnectionType = 4
+)
+
 // Host represent Zabbix host object
 // https://www.zabbix.com/documentation/3.2/manual/api/reference/host/object
 type Host struct {
-	HostID    string        `json:"hostid,omitempty"`
-	Host      string        `json:"host"`
-	Available AvailableType `json:"available,string"`
-	Error     string        `json:"error"`
-	Name      string        `json:"name"`
-	Status    StatusType    `json:"status,string"`
+	HostID         string            `json:"hostid,omitempty"`
+	Host           string            `json:"host"`
+	Available      AvailableType     `json:"available,string"`
+	Error          string            `json:"error"`
+	Name           string            `json:"name"`
+	Status         StatusType        `json:"status,string"`
+	TlsConnect     TlsConnectionType `json:"tls_connect,string,omitempty"`
+	TlsAccept      TlsConnectionType `json:"tls_accept,string,omitempty"`
+	TlsIssuer      string            `json:"tls_issuer,omitempty"`
+	TlsSubject     string            `json:"tls_subject,omitempty"`
+	TlsPskIdentity string            `json:"tls_psk_identity,omitempty"`
+	TlsPsk         string            `json:"tls_psk,omitempty"`
 
 	// Fields below used only when creating hosts
 	GroupIds    HostGroupIDs   `json:"groups,omitempty"`
